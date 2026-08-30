@@ -1,0 +1,22 @@
+[
+  {
+    "name": "toronto",
+    "tc_identifier": "YYZ"
+  },
+  {
+    "name": "ottawa",
+    "tc_identifier": "YOW"
+  },
+  {
+    "name": "windsor",
+    "tc_identifier": "YQG"
+  },
+  {
+    "name": "sudbury",
+    "tc_identifier": "YSB"
+  },
+  {
+    "name": "thunder_bay",
+    "tc_identifier": "YQT"
+  }
+]
