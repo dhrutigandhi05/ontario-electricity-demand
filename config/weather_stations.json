@@ -1,22 +1,22 @@
 [
   {
     "name": "toronto",
-    "tc_identifier": "YYZ"
+    "tc_identifiers": ["YYZ"]
   },
   {
     "name": "ottawa",
-    "tc_identifier": "YOW"
+    "tc_identifiers": ["YOW"]
   },
   {
     "name": "windsor",
-    "tc_identifier": "YQG"
+    "tc_identifiers": ["YQG"]
   },
   {
     "name": "sudbury",
-    "tc_identifier": "YSB"
+    "tc_identifiers": ["YSB"]
   },
   {
     "name": "thunder_bay",
-    "tc_identifier": "YQT"
+    "tc_identifiers": ["YQT", "ZTB"]
   }
 ]
