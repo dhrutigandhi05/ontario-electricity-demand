@@ -1,5 +1,6 @@
 from pathlib import Path
 import argparse
+import json
 import requests
 
 API_URL = "https://api.weather.gc.ca/collections/climate-hourly/items"
@@ -7,15 +8,15 @@ DATA_DIR = Path("data/raw")
 
 def download_weather(year, climate_id):
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    output_file = DATA_DIR / f"weather_{climate_id}_{year}.csv"
+    output_file = DATA_DIR / f"weather_{climate_id}_{year}.json"
 
     weather_filter = (
-        f"properties.CLIMATE_IDENTIFIER = '{climate_id}' "
+        f"CLIMATE_IDENTIFIER = '{climate_id}' "
         f"AND properties.LOCAL_YEAR = {year}"
     )
 
     params = {
-        "f": "csv",
+        "f": "json",
         "lang": "en",
         "limit": 10000,
         "filter": weather_filter,
@@ -32,7 +33,19 @@ def download_weather(year, climate_id):
     )
 
     response.raise_for_status()
-    output_file.write_bytes(response.content)
+    data = response.json()
+    features = data.get("features", [])
+
+    if not features:
+        raise RuntimeError(
+            "The API returned 0 weather observations. "
+            "Check the climate ID and year."
+        )
+
+    with open(output_file, "w", encoding="utf-8") as file:
+        json.dump(data, file)
+
+    print(f"Downloaded {len(features)} observations")
     print(f"Saved to: {output_file}")
 
 def main():
