@@ -11,7 +11,7 @@ def download_weather(year, climate_id):
     output_file = DATA_DIR / f"weather_{climate_id}_{year}.json"
 
     weather_filter = (
-        f"CLIMATE_IDENTIFIER = '{climate_id}' "
+        f"properties.CLIMATE_IDENTIFIER = '{climate_id}' "
         f"AND properties.LOCAL_YEAR = {year}"
     )
 
